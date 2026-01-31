@@ -2507,6 +2507,7 @@ kube-state-metrics:
 ##
 nodeExporter:
   enabled: true
+  hostPort: false
   operatingSystems:
     linux:
       enabled: true
