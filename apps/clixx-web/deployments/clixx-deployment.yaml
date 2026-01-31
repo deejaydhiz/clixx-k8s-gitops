@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: clixx-web-app
-          image: 055081916963.dkr.ecr.us-east-1.amazonaws.com/clixx-repository:clixx-image-1.0.90
+          image: 055081916963.dkr.ecr.us-east-1.amazonaws.com/clixx-repository:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80

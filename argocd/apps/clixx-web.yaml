@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clixx-web
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/deejaydhiz/clixx-k8s-gitops.git
+    targetRevision: main
+    path: apps/clixx-web
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+

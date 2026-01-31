@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clixx-web-config
+  namespace: default
+data:
+  WP_DB_HOST: "wordpressdbclixxjenkins.citiwqs2c4bz.us-east-1.rds.amazonaws.com"
+  ECS_REMOVE_PATTERN: "ecs.deji"
+
