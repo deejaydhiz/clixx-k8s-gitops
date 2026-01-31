@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clixx-web-deployment
+  labels:
+    app: clixx-web-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clixx-web-app
+  template:
+    metadata:
+      labels:
+        app: clixx-web-app
+    spec:
+      containers:
+        - name: clixx-web-app
+          image: 055081916963.dkr.ecr.us-east-1.amazonaws.com/clixx-repository:clixx-image-1.0.90
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          command:
+            - /bin/sh
+            - -c
+            - |
+              if [ -f /var/www/html/wp-config.php ]; then
+                sed -i '/ecs\.deji/d' /var/www/html/wp-config.php
+                sed -i 's|wordpressdbclixxjenkins.ckna08sc0vi8.us-east-1.rds.amazonaws.com|wordpressdbclixxjenkins.citiwqs2c4bz.us-east-1.rds.amazonaws.com|g' /var/www/html/wp-config.php
+              fi
+              exec apache2-foreground
+
